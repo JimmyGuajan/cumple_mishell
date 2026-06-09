@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archivo: Cumpleaños Mishell</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="background-grid"></div>
 
@@ -33,22 +36,14 @@
                 <span class="header-title">terminal-jimmy.exe</span>
             </div>
             <h1 class="title">¡Feliz Cumpleaños!</h1>
-            
-            <div class="terminal-text" id="typewriter-text"></div>
-            
-            <div class="interactive-area" id="interactive-area">
-                <p class="instruction">> INICIANDO SISTEMA DE DIBUJO... <br>(Pasa el dedo o cursor por aquí para generar la firma)</p>
-            </div>
 
-            <!-- Notificación Teams Clónica -->
-            <div class="teams-notification hidden" id="teams-alert">
-                <div class="teams-header">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg/1024px-Microsoft_Office_Teams_%282018%E2%80%93present%29.svg.png" alt="Teams" class="teams-icon">
-                    <span>Microsoft Teams • Recordatorio del Calendario</span>
-                </div>
-                <div class="teams-body">
-                    <strong>Evento programado por Shao para estas fechas.</strong>
-                    <p>Evidencias adjuntas de que uno nunca olvida nada. ¡Los recordatorios no están de más!</p>
+            <div class="terminal-text" id="typewriter-text"></div>
+
+            <!-- Evidencia Visual -->
+            <div class="evidence-wrapper hidden" id="evidence-alert">
+                <p class="instruction">> ABRIENDO ARCHIVO ADJUNTO: Untitled.png <br>> CARGANDO EVIDENCIA...</p>
+                <div class="evidence-container">
+                    <img src="Untitled.png" alt="Evidencia visual" class="evidence-image">
                 </div>
             </div>
         </div>
@@ -56,4 +51,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

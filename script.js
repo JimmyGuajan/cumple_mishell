@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // Envelope Logic
     const envelopeWrapper = document.getElementById('envelope-wrapper');
     const flap = document.getElementById('flap');
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     envelopeWrapper.addEventListener('click', () => {
         if (isOpened) return;
         isOpened = true;
-        
+
         seal.style.opacity = '0';
         flap.classList.add('open');
 
@@ -24,13 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
             envelopeWrapper.style.transition = "transform 0.5s, opacity 0.5s";
             envelopeWrapper.style.transform = "scale(0.8)";
             envelopeWrapper.style.opacity = 0;
-            
+
             setTimeout(() => {
                 envelopeWrapper.style.display = 'none';
                 mainContent.classList.remove('hidden');
                 startSequence();
             }, 500);
-            
+
         }, 1600);
     });
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
     let msgIndex = 0;
     let typeElem = document.getElementById('typewriter-text');
-    let teamsAlert = document.getElementById('teams-alert');
+    let evidenceAlert = document.getElementById('evidence-alert');
 
     function startSequence() {
         if (msgIndex < msgArray.length - 1) {
@@ -61,10 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 2800); // Dar suficiente tiempo para reir y leer el msj largo.
             });
         } else {
-            typeElem.innerHTML = "> Ejecución completada. <br>> Testea el lienzo interactivo ⬇️";
-            
+            typeElem.innerHTML = "> Ejecución completada. <br>> Mostrando evidencia adjunta por Jimmy del pasado ⬇️";
+
             setTimeout(() => {
-                teamsAlert.classList.remove('hidden');
+                evidenceAlert.classList.remove('hidden');
+                
+                // Hacer scroll automático hacia abajo si la imagen cae debajo de la ventana
+                setTimeout(() => {
+                    evidenceAlert.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                }, 500);
             }, 1200);
         }
     }
@@ -74,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let i = 0;
         // Text cursor blinking effect
         element.style.borderRight = "2px solid #4ade80";
-        
+
         let timer = setInterval(() => {
             if (i < text.length) {
                 element.innerHTML += text.charAt(i);
@@ -86,59 +91,5 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, speed);
     }
-
-    // Interactivity: Trailing Letters
-    const interactiveArea = document.getElementById('interactive-area');
-    const characters = ['S', 'H', 'A', 'O', 'S', 'H', 'A', 'O']; // Letras que quieres
-    const colors = ['#f87171', '#facc15', '#4ade80', '#38bdf8', '#c084fc'];
-    
-    let charIndex = 0;
-
-    function createLetterParticle(x, y) {
-        const rect = interactiveArea.getBoundingClientRect();
-        if(x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) return;
-
-        const p = document.createElement('div');
-        p.classList.add('text-particle');
-        
-        // Uso de S-H-A-O
-        p.innerText = characters[charIndex];
-        // Ciclar la letra siguiente
-        charIndex = (charIndex + 1) % characters.length;
-        
-        // Colores neon aleatorios
-        p.style.color = colors[Math.floor(Math.random() * colors.length)];
-        p.style.textShadow = `0 0 8px ${p.style.color}`;
-        
-        p.style.left = (x - rect.left - 10) + 'px';
-        p.style.top = (y - rect.top - 20) + 'px';
-        
-        interactiveArea.appendChild(p);
-
-        setTimeout(() => p.remove(), 1000);
-    }
-
-    // Eventos
-    interactiveArea.addEventListener('mousemove', (e) => {
-        if (Math.random() > 0.1) createLetterParticle(e.clientX, e.clientY);
-    });
-
-    interactiveArea.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        const touch = e.touches[0];
-        if (Math.random() > 0.1) createLetterParticle(touch.clientX, touch.clientY);
-    }, { passive: false });
-
-    // Fun click burst of letters
-    interactiveArea.addEventListener('click', (e) => {
-        for(let i=0; i<10; i++){
-            setTimeout(() => {
-                createLetterParticle(
-                    e.clientX + (Math.random() * 80 - 40), 
-                    e.clientY + (Math.random() * 80 - 40)
-                );
-            }, i * 40);
-        }
-    });
 
 });
