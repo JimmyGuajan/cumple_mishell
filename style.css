@@ -56,6 +56,7 @@ body {
     text-transform: uppercase;
 }
 
+... /* Preserving the rest carefully */
 @keyframes pulseText {
     0%, 100% { opacity: 1; text-shadow: 0 0 10px #38bdf8; }
     50% { opacity: 0.4; text-shadow: none; }
@@ -69,7 +70,7 @@ body {
     position: relative;
     width: 340px;
     height: 230px;
-    background: #1e293b; /* Darker blue */
+    background: #1e293b;
     border-radius: 4px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     border: 2px solid #334155;
@@ -168,8 +169,6 @@ body {
 
 .hidden {
     display: none !important;
-    opacity: 0;
-    pointer-events: none;
 }
 
 /* Main Content: Tech Window */
@@ -196,24 +195,16 @@ body {
     padding: 0; 
     max-width: 650px;
     width: 100%;
-    max-height: 90vh; /* Para que en celulares con la imagen grande no se salga de pantalla y sea scrolleable si hace falta */
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* Personalizar scrollbar de ser necesaria */
-.tech-card::-webkit-scrollbar {
-    width: 8px;
-}
-.tech-card::-webkit-scrollbar-track {
-    background: #0f172a; 
-}
-.tech-card::-webkit-scrollbar-thumb {
-    background: #334155; 
-    border-radius: 4px;
-}
+.tech-card::-webkit-scrollbar { width: 8px; }
+.tech-card::-webkit-scrollbar-track { background: #0f172a; }
+.tech-card::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 
 @keyframes zoomIn {
     0% { transform: scale(0.8); opacity: 0; }
@@ -276,8 +267,6 @@ body {
 .instruction {
     font-family: 'Share Tech Mono', monospace;
     color: #94a3b8;
-    pointer-events: none;
-    z-index: 10;
     font-size: 1rem;
     margin-bottom: 10px;
     text-shadow: 0 0 5px rgba(148, 163, 184, 0.5);
@@ -289,7 +278,6 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-    position: relative;
 }
 
 .evidence-image {
@@ -297,11 +285,6 @@ body {
     height: auto;
     display: block;
     object-fit: cover;
-    transition: transform 0.3s;
-}
-
-.evidence-image:hover {
-    transform: scale(1.02);
 }
 
 @keyframes slideUpWidget {
@@ -309,10 +292,166 @@ body {
     100% { opacity: 1; transform: translateY(0); }
 }
 
+/* ----------- NEW: GLITCH ANIMATIONS ----------- */
+.glitch-wrapper {
+    margin: 1rem 2rem 2rem 2rem;
+    text-align: center;
+    border: 2px dashed #ef4444;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: rgba(239, 68, 68, 0.1);
+    animation: flashDanger 1s infinite alternate, slideUpWidget 0.6s forwards;
+}
+
+@keyframes flashDanger {
+    0% { background: rgba(239, 68, 68, 0.05); border-color:#dc2626;}
+    100% { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);}
+}
+
+.danger-text {
+    color: #ef4444;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    text-shadow: 0 0 10px #ef4444;
+    animation: jitter 0.4s infinite;
+}
+
+@keyframes jitter {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
+.danger-subtext {
+    color: #fca5a5;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+#countdown {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 15px #ef4444;
+}
+
+.hack-btn {
+    background: #0f172a;
+    color: #4ade80;
+    border: 2px solid #4ade80;
+    padding: 15px;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-family: 'Share Tech Mono', monospace;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.hack-btn:hover {
+    background: #4ade80;
+    color: #0f172a;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+    transform: scale(1.02);
+}
+
+/* Shake card effect strictly via Javascript triggers */
+.shake-card {
+    animation: cardShake 0.4s infinite;
+    pointer-events: all; 
+}
+
+@keyframes cardShake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    25% { transform: translate(-2px, -2px) rotate(-1deg); }
+    50% { transform: translate(3px, 1px) rotate(1deg); }
+    75% { transform: translate(-1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -1px) rotate(-1deg); }
+}
+
+/* ----------- NEW: SUCCESS FINAL STATE ----------- */
+.final-wrapper {
+    margin: 1rem 2rem 2rem 2rem;
+    padding: 1.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 2px solid #10b981;
+    border-radius: 8px;
+    animation: fadeInFinal 1s;
+    text-align: center;
+}
+
+@keyframes fadeInFinal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);}
+}
+
+.success-text {
+    color: #10b981;
+    font-size: 1.8rem;
+    margin-bottom: 0px;
+    font-family: 'Share Tech Mono', monospace;
+    text-shadow: 0 0 10px #10b981;
+}
+
+.final-message-text {
+    color: #cbd5e1 !important; 
+    margin-top: 5px !important; 
+    min-height: auto !important;
+}
+
+.video-container {
+    margin-top: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    border: 1px solid #334155;
+}
+
+.romantic-finale {
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(244, 63, 94, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #f43f5e;
+}
+
+.romantic-finale p {
+    color: #fca5a5; 
+    font-size: 1.4rem; 
+    text-align: center; 
+    line-height: 1.4;
+    font-family: 'Outfit', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Game over screen full screen */
+#game-over {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ef4444;
+    font-family: 'Share Tech Mono', monospace;
+}
+#game-over h1 { font-size: 4rem; text-shadow: 0 0 20px #ef4444; }
+
 @media (max-width: 600px) {
     .title { font-size: 1.8rem; margin: 1rem 0 0.5rem 0;}
     .envelope { width: 300px; height: 200px; }
     .terminal-text { font-size: 0.95rem; padding: 0 1.5rem; min-height: 90px;}
     .evidence-wrapper { margin: 1rem 1.5rem 2rem 1.5rem; }
     .instruction { font-size: 0.85rem; }
+    .glitch-wrapper, .final-wrapper { margin: 1rem 1.5rem 2rem 1.5rem; }
+    .danger-text { font-size: 1.3rem; }
+    #game-over h1 { font-size: 2rem; }
+    .romantic-finale p { font-size: 1.2rem; }
 }

@@ -28,7 +28,7 @@
 
     <!-- Contenido principal interactivo -->
     <div class="main-content hidden" id="main-content">
-        <div class="tech-card">
+        <div class="tech-card" id="tech-card">
             <div class="card-header">
                 <span class="dot red"></span>
                 <span class="dot yellow"></span>
@@ -46,7 +46,45 @@
                     <img src="Untitled.png" alt="Evidencia visual" class="evidence-image">
                 </div>
             </div>
+
+            <!-- Glitch / Alerta de destrucción -->
+            <div class="glitch-wrapper hidden" id="glitch-alert">
+                <h2 class="danger-text">⚠️ [FATAL ERROR] COLAPSO DE SERVIDOR ⚠️</h2>
+                <p class="danger-subtext">Base de datos inestable. El registro se autodestruirá en: <span id="countdown">60</span>s</p>
+                
+                <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 6px; border: 1px solid #334155;">
+                    <p class="terminal-text" style="color:#e2e8f0; font-size:1rem; margin:0; padding:0; min-height: auto;">
+                        > REQUIERE ANULACIÓN MANUAL.<br>
+                        > INGRESA COMANDO DE EMERGENCIA.
+                    </p>
+                    <button class="hack-btn" id="save-btn">> sudo npm run SoyLoquita --save</button>
+                </div>
+            </div>
+
+            <!-- Final Stabilized -->
+            <div class="final-wrapper hidden" id="final-alert">
+                <h2 class="success-text">✅ SISTEMA ESTABILIZADO</h2>
+                
+                <p class="terminal-text final-message-text">
+                   > Escucha esto un ratito:
+                </p>
+                
+                <div class="video-container">
+                    <!-- YouTube Embed en el segundo 16 -->
+                    <iframe width="100%" height="220" src="https://www.youtube.com/embed/QEEK88m-PAI?start=16" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="romantic-finale">
+                   <p>> YO ACUDIRÉ AL LUGAR QUE PREFIERAS.</p>
+                </div>
+            </div>
+
         </div>
+    </div>
+
+    <!-- PANTALLA NEGRA EXTREMA SI PIERDE -->
+    <div id="game-over" class="hidden">
+        <h1>[ ARCHIVO ELIMINADO ]</h1>
     </div>
 
     <script src="script.js"></script>
