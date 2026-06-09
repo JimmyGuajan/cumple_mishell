@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 evidenceAlert.classList.remove('hidden');
                 
                 setTimeout(() => {
-                    evidenceAlert.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    techCard.scrollTo({ top: techCard.scrollHeight, behavior: 'smooth' });
                 }, 500);
 
                 // Empezar cuenta regresiva fatal despus de unos pocos segundos
@@ -110,7 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Mostrar Alerta Glitch
         glitchAlert.classList.remove('hidden');
-        glitchAlert.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        
+        setTimeout(() => {
+            techCard.scrollTo({ top: techCard.scrollHeight, behavior: 'smooth' });
+        }, 100);
         
         // Agiteo de Pantalla
         techCard.classList.add('shake-card');
@@ -150,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mostrar final hermoso
         finalAlert.classList.remove('hidden');
         setTimeout(() => {
-            finalAlert.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            techCard.scrollTo({ top: techCard.scrollHeight, behavior: 'smooth' });
         }, 300);
     });
 

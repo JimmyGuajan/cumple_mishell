@@ -55,8 +55,6 @@ body {
     animation: pulseText 1.5s infinite;
     text-transform: uppercase;
 }
-
-... /* Preserving the rest carefully */
 @keyframes pulseText {
     0%, 100% { opacity: 1; text-shadow: 0 0 10px #38bdf8; }
     50% { opacity: 0.4; text-shadow: none; }
@@ -300,7 +298,7 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     background: rgba(239, 68, 68, 0.1);
-    animation: flashDanger 1s infinite alternate, slideUpWidget 0.6s forwards;
+    animation: flashDanger 0.8s infinite alternate;
 }
 
 @keyframes flashDanger {
